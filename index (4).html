@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelvin Mutua Murungi — Data Scientist &amp; AI Researcher</title>
+<meta name="description" content="Kelvin Mutua Murungi — Data Scientist, Statistician and AI Researcher building risk-prediction and early-warning systems for agriculture, food safety, public health and climate resilience in Africa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #ede4d2;
+    --bg-panel: #e4d9bf;
+    --bg-panel-2: #ddd0af;
+    --line: #c6b78f;
+    --text: #2c2415;
+    --text-dim: #5f5439;
+    --text-faint: #8c7f5f;
+    --signal: #5c6b3c;
+    --signal-dim: #8a9765;
+    --alert: #a8562c;
+    --alert-dim: #c98f6a;
+    --serif: "Source Serif 4", Georgia, serif;
+    --display: "Space Grotesk", "Helvetica Neue", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --maxw: 1120px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 1px 1px, rgba(44,36,21,0.07) 1px, transparent 0) 0 0/26px 26px,
+      var(--bg);
+    color:var(--text);
+    font-family:var(--serif);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  ::selection{background:var(--signal-dim); color:#fff;}
+
+  :focus-visible{
+    outline:2px solid var(--signal);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--signal);
+  }
+
+  h1,h2,h3{font-family:var(--display); font-weight:600; margin:0; color:var(--text);}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(237,228,210,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-family:var(--display); font-weight:600; font-size:15px;
+    letter-spacing:0.01em;
+    text-decoration:none;
+    display:flex; align-items:center; gap:9px;
+  }
+  .brand .dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--signal);
+    box-shadow:0 0 0 3px rgba(92,107,60,0.18);
+  }
+  .navlinks{display:flex; gap:28px; align-items:center;}
+  .navlinks a{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:0.03em;
+    text-decoration:none; color:var(--text-dim);
+    text-transform:uppercase;
+    transition:color .15s ease;
+  }
+  .navlinks a:hover{color:var(--signal);}
+  .navlinks .status{
+    display:flex; align-items:center; gap:7px;
+    padding:6px 12px;
+    border:1px solid var(--line);
+    border-radius:100px;
+    font-family:var(--mono); font-size:11.5px; color:var(--text-dim);
+  }
+  .navlinks .status .pulse{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--signal);
+    animation:pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1; box-shadow:0 0 0 0 rgba(92,107,60,0.5);}
+    50%{opacity:0.55; box-shadow:0 0 0 5px rgba(92,107,60,0);}
+  }
+  .navtoggle{display:none;}
+
+  @media (max-width:760px){
+    .navlinks a.hide-mobile, .navlinks .status{display:none;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 64px;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .hero-graphic{
+    position:absolute; inset:0; z-index:1;
+    opacity:0.9;
+  }
+  .hero-graphic svg{width:100%; height:100%; display:block;}
+  .hero-fade{
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(237,228,210,0.1) 0%, rgba(237,228,210,0.65) 55%, var(--bg) 100%);
+  }
+  .kicker{
+    display:flex; align-items:center; gap:10px; margin-bottom:22px;
+  }
+  .kicker .rule{width:34px; height:1px; background:var(--signal-dim);}
+
+  h1.name{
+    font-size:clamp(40px, 6.2vw, 78px);
+    line-height:1.03;
+    letter-spacing:-0.01em;
+    max-width:14ch;
+  }
+  .role{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    color:var(--text-dim);
+    font-size:clamp(17px, 2vw, 21px);
+    margin-top:18px; max-width:46ch;
+  }
+  .hero-cta{
+    display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.02em;
+    padding:12px 20px; border-radius:3px;
+    text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    transition:all .15s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--signal); color:#f3ecd9;}
+  .btn-primary:hover{background:#4c5931;}
+  .btn-ghost{border-color:var(--line); color:var(--text);}
+  .btn-ghost:hover{border-color:var(--text-dim); background:var(--bg-panel);}
+
+  .hero-caption{
+    font-family:var(--mono); font-size:11px; color:var(--text-faint);
+    letter-spacing:0.05em;
+    margin-top:52px;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{padding:88px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:44px; gap:20px; flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(26px, 3vw, 34px);}
+  .section-head .eyebrow{margin-bottom:8px; display:block;}
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid; grid-template-columns: 1.3fr 0.9fr; gap:64px;
+  }
+  .about-grid p{color:var(--text-dim); font-size:17px;}
+  .about-grid p + p{margin-top:16px;}
+  .about-grid strong{color:var(--text); font-weight:600;}
+
+  .timeline{list-style:none; margin:0; padding:0;}
+  .timeline li{
+    position:relative; padding-left:26px; padding-bottom:28px;
+    border-left:1px solid var(--line);
+  }
+  .timeline li:last-child{padding-bottom:0;}
+  .timeline li::before{
+    content:""; position:absolute; left:-4.5px; top:2px;
+    width:8px; height:8px; border-radius:50%;
+    background:var(--bg); border:1.5px solid var(--signal);
+  }
+  .timeline li.current::before{background:var(--signal);}
+  .timeline .deg{font-family:var(--display); font-size:15.5px; font-weight:600; color:var(--text);}
+  .timeline .school{font-family:var(--mono); font-size:12px; color:var(--text-dim); margin-top:4px;}
+  .timeline .tag{
+    display:inline-block; margin-top:8px;
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--signal);
+    border:1px solid var(--signal-dim); border-radius:100px;
+    padding:2px 9px;
+  }
+
+  /* ---------- Stack ---------- */
+  .stack-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .stack-cat{background:var(--bg-panel); padding:28px;}
+  .stack-cat h3{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--text-dim); font-weight:500;
+    margin-bottom:16px;
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:var(--mono); font-size:12.5px; color:var(--text);
+    background:var(--bg-panel-2); border:1px solid var(--line);
+    padding:6px 11px; border-radius:3px;
+  }
+
+  @media (max-width:760px){
+    .stack-grid{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Research grid ---------- */
+  .research-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .research-card{
+    background:var(--bg-panel); padding:26px 24px;
+    min-height:130px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    transition:background .15s ease;
+  }
+  .research-card:hover{background:var(--bg-panel-2);}
+  .research-card .idx{font-family:var(--mono); font-size:11px; color:var(--text-faint);}
+  .research-card h3{font-size:16px; margin-top:14px; line-height:1.3;}
+
+  @media (max-width:900px){ .research-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:600px){ .research-grid{grid-template-columns:1fr;} }
+
+  /* ---------- Projects ---------- */
+  .projects{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .project{
+    background:var(--bg-panel);
+    padding:36px;
+    display:grid; grid-template-columns:220px 1fr; gap:32px;
+  }
+  .project .ptitle{display:flex; flex-direction:column; gap:6px;}
+  .project .plabel{font-family:var(--mono); font-size:11px; color:var(--signal); letter-spacing:0.06em; text-transform:uppercase;}
+  .project h3{font-size:20px; line-height:1.25;}
+  .project p{color:var(--text-dim); margin:0 0 16px;}
+  .project .tags{display:flex; flex-wrap:wrap; gap:7px;}
+  .project .tags span{
+    font-family:var(--mono); font-size:11px; color:var(--text-dim);
+    border:1px solid var(--line); padding:4px 9px; border-radius:100px;
+  }
+  @media (max-width:760px){
+    .project{grid-template-columns:1fr; gap:14px;}
+  }
+
+  /* ---------- Collaboration ---------- */
+  .collab{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
+  }
+  .collab p{color:var(--text-dim);}
+  .collab-list{list-style:none; margin:18px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:10px 18px;}
+  .collab-list li{
+    font-family:var(--mono); font-size:12.5px; color:var(--text);
+    padding-left:16px; position:relative;
+  }
+  .collab-list li::before{
+    content:"→"; position:absolute; left:0; color:var(--alert);
+  }
+  @media (max-width:760px){ .collab{grid-template-columns:1fr;} .collab-list{grid-template-columns:1fr;} }
+
+  /* ---------- Footer ---------- */
+  footer{padding:64px 0 48px;}
+  .footer-grid{
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:32px;
+  }
+  .footer-cta h2{font-size:clamp(26px,3.6vw,40px); max-width:14ch;}
+  .contact-list{list-style:none; margin:22px 0 0; padding:0;}
+  .contact-list li{margin-bottom:8px;}
+  .contact-list a{
+    font-family:var(--mono); font-size:14px; text-decoration:none;
+    color:var(--text-dim); border-bottom:1px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .contact-list a:hover{color:var(--signal); border-color:var(--signal-dim);}
+  .contact-list .k{color:var(--text-faint); display:inline-block; width:74px; font-size:11px; text-transform:uppercase; letter-spacing:0.06em;}
+  .fineprint{
+    margin-top:56px; padding-top:24px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-family:var(--mono); font-size:11px; color:var(--text-faint);
+  }
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a class="brand" href="#top"><span class="dot"></span>Kelvin Mutua Murungi</a>
+    <div class="navlinks">
+      <a href="#about" class="hide-mobile">About</a>
+      <a href="#research" class="hide-mobile">Research</a>
+      <a href="#projects" class="hide-mobile">Projects</a>
+      <a href="#contact">Contact</a>
+      <span class="status hide-mobile"><span class="pulse"></span>Open to collaborate</span>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-graphic" aria-hidden="true">
+      <svg viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice">
+        <line x1="0" y1="200" x2="1200" y2="200" stroke="#a8562c" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 6"/>
+        <text x="1130" y="192" fill="#a8562c" fill-opacity="0.65" font-family="JetBrains Mono" font-size="11">threshold</text>
+        <polyline id="riskline" points="0,340 60,320 120,335 180,300 240,310 300,260 360,275 420,230 480,245 540,190 600,205 660,160 720,175 780,140 840,150 900,120 960,132 1020,105 1080,118 1140,95 1200,100"
+          fill="none" stroke="#5c6b3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="1140" cy="95" r="4.5" fill="#5c6b3c">
+          <animate attributeName="r" values="4.5;8;4.5" dur="2.4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;0.35;1" dur="2.4s" repeatCount="indefinite"/>
+        </circle>
+        <g stroke="#c6b78f" stroke-width="1">
+          <line x1="0" y1="80" x2="1200" y2="80"/>
+          <line x1="0" y1="440" x2="1200" y2="440"/>
+        </g>
+      </svg>
+    </div>
+    <div class="hero-fade" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <div class="kicker">
+        <span class="rule"></span>
+        <span class="eyebrow">PhD Researcher — AI, Statistics &amp; Data Science</span>
+      </div>
+      <h1 class="name">Kelvin Mutua Murungi</h1>
+      <p class="role">Building AI-driven risk-prediction, early-warning, and decision-support systems for agriculture, food safety, public health, and climate resilience across Africa.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="mailto:murungimutua@gmail.com">Email me</a>
+        <a class="btn btn-ghost" href="#research">View research →</a>
+      </div>
+      <div class="hero-caption">RISK INDEX — illustrative · early-warning threshold crossing</div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">About</span>
+          <h2>Statistics, AI, and real-world impact</h2>
+        </div>
+      </div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p><strong>I'm a Data Scientist, Statistician, and AI Researcher</strong> pursuing a PhD in Computer Science at the University of Nairobi, with a background in applied statistics and data analytics. My work sits at the intersection of artificial intelligence, machine learning, statistics, and sustainable development.</p>
+          <p>I'm particularly interested in developing practical, data-driven solutions to challenges in agriculture, food safety, public health, climate resilience, and development. My current research focuses on AI-driven risk prediction, early-warning systems, and decision-support tools, applying machine learning and statistical methods to real-world African development challenges.</p>
+        </div>
+        <ul class="timeline reveal">
+          <li>
+            <div class="deg">BSc Applied Statistics with Computing</div>
+            <div class="school">University of Kabianga</div>
+          </li>
+          <li>
+            <div class="deg">Master of Applied Statistics</div>
+            <div class="school">Jomo Kenyatta University of Agriculture and Technology</div>
+          </li>
+          <li class="current">
+            <div class="deg">PhD in Computer Science</div>
+            <div class="school">University of Nairobi</div>
+            <span class="tag">In progress</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Tech stack</span>
+          <h2>Tools of the trade</h2>
+        </div>
+      </div>
+      <div class="stack-grid reveal">
+        <div class="stack-cat">
+          <h3>Programming &amp; Data Science</h3>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">R</span><span class="chip">SQL</span>
+            <span class="chip">Power BI</span><span class="chip">Jupyter</span>
+          </div>
+        </div>
+        <div class="stack-cat">
+          <h3>AI &amp; Machine Learning</h3>
+          <div class="chips">
+            <span class="chip">Machine Learning</span><span class="chip">Predictive Modelling</span>
+            <span class="chip">Statistical Learning</span><span class="chip">Explainable AI (XAI)</span>
+            <span class="chip">NLP</span><span class="chip">Deep Learning</span>
+            <span class="chip">Risk Modelling</span><span class="chip">Time-Series Modelling</span>
+          </div>
+        </div>
+        <div class="stack-cat">
+          <h3>Data &amp; Geospatial Analytics</h3>
+          <div class="chips">
+            <span class="chip">Geospatial Analytics</span><span class="chip">Spatial Modelling</span>
+            <span class="chip">Remote Sensing</span><span class="chip">Climate &amp; Environmental Data</span>
+            <span class="chip">Data Engineering &amp; ETL</span><span class="chip">Data Visualisation</span>
+            <span class="chip">Digital Data Collection</span>
+          </div>
+        </div>
+        <div class="stack-cat">
+          <h3>Research &amp; Development</h3>
+          <div class="chips">
+            <span class="chip">Research Design</span><span class="chip">Statistical Analysis</span>
+            <span class="chip">Survey Methodology</span><span class="chip">Monitoring, Evaluation &amp; Learning</span>
+            <span class="chip">Decision-Support Systems</span><span class="chip">Responsible &amp; Ethical AI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Research</span>
+          <h2>Prediction, surveillance &amp; decision-making</h2>
+        </div>
+      </div>
+      <p class="reveal" style="color:var(--text-dim); max-width:64ch; margin:-20px 0 40px;">My research explores how AI, statistics, and multi-source data can be used to improve prediction, surveillance, and decision-making in resource-constrained settings.</p>
+      <div class="research-grid reveal">
+        <div class="research-card"><span class="idx">01</span><h3>AI for Development Impact</h3></div>
+        <div class="research-card"><span class="idx">02</span><h3>Predictive Modelling &amp; Risk Assessment</h3></div>
+        <div class="research-card"><span class="idx">03</span><h3>AI for Agriculture &amp; Food Safety</h3></div>
+        <div class="research-card"><span class="idx">04</span><h3>AI Applications in Public Health</h3></div>
+        <div class="research-card"><span class="idx">05</span><h3>Geospatial &amp; Spatial Analytics</h3></div>
+        <div class="research-card"><span class="idx">06</span><h3>Climate &amp; Environmental Risk Modelling</h3></div>
+        <div class="research-card"><span class="idx">07</span><h3>Explainable &amp; Responsible AI</h3></div>
+        <div class="research-card"><span class="idx">08</span><h3>AI-Enabled Early-Warning Systems</h3></div>
+        <div class="research-card"><span class="idx">09</span><h3>Statistical Decision-Support Systems</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Featured projects</span>
+          <h2>What I'm building</h2>
+        </div>
+      </div>
+      <div class="projects reveal">
+        <div class="project">
+          <div class="ptitle">
+            <span class="plabel">Featured</span>
+            <h3>Aflatoxin Early-Warning &amp; Risk Prediction</h3>
+          </div>
+          <div>
+            <p>Developing AI and statistical models for aflatoxin risk prediction and risk-based surveillance in Kenya, integrating agricultural, environmental, climatic, health, and surveillance data.</p>
+            <div class="tags">
+              <span>Machine Learning</span><span>Geospatial Analytics</span><span>Climate Data</span>
+              <span>Risk Modelling</span><span>Explainable AI</span><span>Early Warning</span>
+            </div>
+          </div>
+        </div>
+        <div class="project">
+          <div class="ptitle">
+            <span class="plabel">Infrastructure</span>
+            <h3>Digital Survey &amp; Data Collection Systems</h3>
+          </div>
+          <div>
+            <p>Developing digital solutions for survey automation, data collection, quality control, and research data management.</p>
+            <div class="tags">
+              <span>Survey Technology</span><span>Data Management</span><span>Automation</span><span>Research Analytics</span>
+            </div>
+          </div>
+        </div>
+        <div class="project">
+          <div class="ptitle">
+            <span class="plabel">Decision support</span>
+            <h3>Predictive Analytics &amp; Decision Support</h3>
+          </div>
+          <div>
+            <p>Statistical and machine-learning models to support risk assessment, forecasting, business intelligence, and evidence-based decision-making.</p>
+            <div class="tags">
+              <span>Forecasting</span><span>Risk Assessment</span><span>Business Intelligence</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="collab">
+    <div class="wrap">
+      <div class="collab reveal">
+        <div>
+          <span class="eyebrow">Open to collaboration</span>
+          <h2 style="margin-top:8px; font-size:clamp(24px,3vw,32px);">Working across disciplines and borders</h2>
+          <p style="margin-top:16px;">I'm interested in collaborating with researchers, universities, research organisations, development partners, governments, and technology organisations — particularly on multidisciplinary and multi-country work that translates research into practical solutions and policy impact.</p>
+        </div>
+        <ul class="collab-list">
+          <li>AI for development &amp; social good</li>
+          <li>Agriculture &amp; food systems</li>
+          <li>Public health &amp; epidemiology</li>
+          <li>Climate resilience</li>
+          <li>Predictive modelling &amp; risk assessment</li>
+          <li>Geospatial &amp; environmental analytics</li>
+          <li>AI-enabled early-warning systems</li>
+          <li>Responsible &amp; explainable AI</li>
+          <li>Open-source AI &amp; data science</li>
+          <li>Multidisciplinary research across Africa</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-cta">
+        <span class="eyebrow">Get in touch</span>
+        <h2 style="margin-top:8px;">Let's build something that matters.</h2>
+        <ul class="contact-list">
+          <li><span class="k">Email</span><a href="mailto:murungimutua@gmail.com">murungimutua@gmail.com</a></li>
+          <li><span class="k">LinkedIn</span><span style="font-family:var(--mono); font-size:14px; color:var(--text-dim);">Add your LinkedIn URL here</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fineprint">
+      <span>Building AI and data-driven solutions for Africa's most important development challenges.</span>
+      <span>© <span id="year"></span> Kelvin Mutua Murungi</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
