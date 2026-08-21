@@ -25,6 +25,7 @@
     --display: "Space Grotesk", "Helvetica Neue", sans-serif;
     --mono: "JetBrains Mono", ui-monospace, monospace;
     --maxw: 1120px;
+    --shadow: 0 1px 2px rgba(44,36,21,0.05), 0 14px 28px -16px rgba(44,36,21,0.22);
   }
 
   *{box-sizing:border-box;}
@@ -73,6 +74,7 @@
     background:rgba(237,228,210,0.86);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
+    box-shadow:0 8px 24px -20px rgba(44,36,21,0.4);
   }
   nav.wrap{
     display:flex; align-items:center; justify-content:space-between;
@@ -113,10 +115,39 @@
     0%,100%{opacity:1; box-shadow:0 0 0 0 rgba(92,107,60,0.5);}
     50%{opacity:0.55; box-shadow:0 0 0 5px rgba(92,107,60,0);}
   }
-  .navtoggle{display:none;}
+
+  .navtoggle{
+    display:none; background:none; border:1px solid var(--line);
+    border-radius:4px; width:36px; height:36px;
+    align-items:center; justify-content:center;
+    cursor:pointer; padding:0;
+  }
+  .navtoggle span, .navtoggle span::before, .navtoggle span::after{
+    display:block; width:16px; height:1.5px; background:var(--text);
+    position:relative; transition:transform .2s ease, opacity .2s ease;
+  }
+  .navtoggle span::before, .navtoggle span::after{content:""; position:absolute; left:0;}
+  .navtoggle span::before{top:-5px;}
+  .navtoggle span::after{top:5px;}
+  header.open .navtoggle span{background:transparent;}
+  header.open .navtoggle span::before{transform:translateY(5px) rotate(45deg);}
+  header.open .navtoggle span::after{transform:translateY(-5px) rotate(-45deg);}
 
   @media (max-width:760px){
-    .navlinks a.hide-mobile, .navlinks .status{display:none;}
+    .navtoggle{display:flex;}
+    .navlinks{
+      position:fixed; top:64px; left:0; right:0; z-index:49;
+      flex-direction:column; align-items:flex-start; gap:0;
+      background:var(--bg); border-bottom:1px solid var(--line);
+      max-height:0; overflow:hidden;
+      transition:max-height .25s ease;
+    }
+    header.open .navlinks{max-height:280px;}
+    .navlinks a, .navlinks .status{
+      display:flex !important; width:100%; padding:16px 28px;
+      border-top:1px solid var(--line);
+    }
+    .navlinks a:first-child{border-top:none;}
   }
 
   /* ---------- Hero ---------- */
@@ -174,12 +205,30 @@
     margin-top:52px;
   }
 
+  .hero-facts{
+    display:flex; gap:0; margin-top:44px; flex-wrap:wrap;
+    border-top:1px solid var(--line);
+  }
+  .hero-facts .fact{
+    padding:18px 28px 0 0; margin-right:28px;
+    border-right:1px solid var(--line);
+  }
+  .hero-facts .fact:last-child{border-right:none; margin-right:0;}
+  .hero-facts .fact .num{font-family:var(--display); font-size:22px; font-weight:600; color:var(--text);}
+  .hero-facts .fact .lbl{font-family:var(--mono); font-size:11.5px; color:var(--text-dim); margin-top:4px; max-width:16ch;}
+
   /* ---------- Section shell ---------- */
   section{padding:88px 0;}
   section + section{border-top:1px solid var(--line);}
   .section-head{
-    display:flex; align-items:baseline; justify-content:space-between;
+    display:flex; align-items:flex-end; justify-content:space-between;
     margin-bottom:44px; gap:20px; flex-wrap:wrap;
+  }
+  .section-head-left{display:flex; align-items:flex-end; gap:18px;}
+  .secnum{
+    font-family:var(--mono); font-size:13px; color:var(--text-faint);
+    border:1px solid var(--line); border-radius:100px;
+    padding:5px 12px; margin-bottom:4px;
   }
   .section-head h2{font-size:clamp(26px, 3vw, 34px);}
   .section-head .eyebrow{margin-bottom:8px; display:block;}
@@ -219,8 +268,10 @@
     display:grid; grid-template-columns:repeat(2, 1fr); gap:1px;
     background:var(--line);
     border:1px solid var(--line);
+    box-shadow:var(--shadow);
   }
-  .stack-cat{background:var(--bg-panel); padding:28px;}
+  .stack-cat{background:var(--bg-panel); padding:28px; position:relative; transition:transform .18s ease, box-shadow .18s ease;}
+  .stack-cat:hover{transform:translateY(-2px); box-shadow:var(--shadow); z-index:2;}
   .stack-cat h3{
     font-family:var(--mono); font-size:12px; letter-spacing:0.08em;
     text-transform:uppercase; color:var(--text-dim); font-weight:500;
@@ -242,26 +293,40 @@
   .research-grid{
     display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
     background:var(--line); border:1px solid var(--line);
+    box-shadow:var(--shadow);
   }
   .research-card{
     background:var(--bg-panel); padding:26px 24px;
-    min-height:130px;
+    min-height:148px;
     display:flex; flex-direction:column; justify-content:space-between;
-    transition:background .15s ease;
+    transition:transform .18s ease, box-shadow .18s ease, background .15s ease;
+    position:relative;
   }
-  .research-card:hover{background:var(--bg-panel-2);}
-  .research-card .idx{font-family:var(--mono); font-size:11px; color:var(--text-faint);}
+  .research-card:hover{background:var(--bg-panel-2); transform:translateY(-2px); box-shadow:var(--shadow); z-index:2;}
+  .research-card .idx{
+    font-family:var(--mono); font-size:11px; color:var(--bg);
+    background:var(--signal); width:22px; height:22px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
   .research-card h3{font-size:16px; margin-top:14px; line-height:1.3;}
+  .research-card p{font-family:var(--mono); font-size:12px; color:var(--text-dim); margin:8px 0 0; line-height:1.5;}
 
   @media (max-width:900px){ .research-grid{grid-template-columns:repeat(2,1fr);} }
   @media (max-width:600px){ .research-grid{grid-template-columns:1fr;} }
 
   /* ---------- Projects ---------- */
-  .projects{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .projects{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); box-shadow:var(--shadow);}
   .project{
     background:var(--bg-panel);
     padding:36px;
-    display:grid; grid-template-columns:220px 1fr; gap:32px;
+    display:grid; grid-template-columns:56px 200px 1fr; gap:24px;
+    transition:background .15s ease;
+    position:relative;
+  }
+  .project:hover{background:var(--bg-panel-2);}
+  .project .pnum{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:38px; color:var(--line); line-height:1;
   }
   .project .ptitle{display:flex; flex-direction:column; gap:6px;}
   .project .plabel{font-family:var(--mono); font-size:11px; color:var(--signal); letter-spacing:0.06em; text-transform:uppercase;}
@@ -271,9 +336,11 @@
   .project .tags span{
     font-family:var(--mono); font-size:11px; color:var(--text-dim);
     border:1px solid var(--line); padding:4px 9px; border-radius:100px;
+    background:var(--bg);
   }
   @media (max-width:760px){
-    .project{grid-template-columns:1fr; gap:14px;}
+    .project{grid-template-columns:1fr; gap:12px;}
+    .project .pnum{display:none;}
   }
 
   /* ---------- Collaboration ---------- */
@@ -294,23 +361,57 @@
   /* ---------- Footer ---------- */
   footer{padding:64px 0 48px;}
   .footer-grid{
-    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:32px;
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
   }
   .footer-cta h2{font-size:clamp(26px,3.6vw,40px); max-width:14ch;}
-  .contact-list{list-style:none; margin:22px 0 0; padding:0;}
-  .contact-list li{margin-bottom:8px;}
-  .contact-list a{
-    font-family:var(--mono); font-size:14px; text-decoration:none;
-    color:var(--text-dim); border-bottom:1px solid transparent;
-    transition:color .15s ease, border-color .15s ease;
+  .footer-cta p{color:var(--text-dim); margin-top:14px; max-width:38ch;}
+
+  .contact-form{display:flex; flex-direction:column; gap:16px;}
+  .form-field{display:flex; flex-direction:column; gap:6px;}
+  .form-field label{
+    font-family:var(--mono); font-size:11px; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--text-dim);
   }
-  .contact-list a:hover{color:var(--signal); border-color:var(--signal-dim);}
-  .contact-list .k{color:var(--text-faint); display:inline-block; width:74px; font-size:11px; text-transform:uppercase; letter-spacing:0.06em;}
-  .fineprint{
+  .form-input{
+    font-family:var(--serif); font-size:15px; color:var(--text);
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:4px;
+    padding:12px 14px; resize:vertical;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .form-input:focus{outline:none; border-color:var(--signal); box-shadow:0 0 0 3px rgba(92,107,60,0.15);}
+  .form-input[aria-invalid="true"]{border-color:var(--alert);}
+  textarea.form-input{min-height:110px; font-family:var(--serif);}
+  .form-submit{align-self:flex-start; margin-top:2px; cursor:pointer;}
+  .form-note{font-family:var(--mono); font-size:11px; color:var(--text-faint); margin-top:-4px;}
+
+  .field-error{font-family:var(--mono); font-size:11px; color:var(--alert);}
+  .field-error:empty{display:none;}
+
+  .form-message{font-family:var(--mono); font-size:12.5px; line-height:1.5; border-radius:4px;}
+  .form-message:empty{display:none; margin:0; padding:0; border:none;}
+  .form-message:not(:empty){display:block; padding:12px 14px; margin-bottom:16px;}
+  .form-message[data-fs-success]:not(:empty){color:var(--signal); background:var(--bg-panel); border:1px solid var(--signal-dim);}
+  .form-message[data-fs-error]:not(:empty){color:var(--alert); background:var(--bg-panel); border:1px solid var(--alert-dim);}
+
+  .footnote-contacts{
+    display:flex; gap:28px; flex-wrap:wrap;
     margin-top:56px; padding-top:24px; border-top:1px solid var(--line);
+  }
+  .footnote-contacts a{
+    font-family:var(--mono); font-size:13px; color:var(--text-dim);
+    text-decoration:none; display:inline-flex; align-items:baseline; gap:7px;
+    transition:color .15s ease;
+  }
+  .footnote-contacts a:hover{color:var(--signal);}
+  .footnote-contacts .k{
+    color:var(--text-faint); font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em;
+  }
+  .fineprint{
+    margin-top:24px; padding-top:24px; border-top:1px solid var(--line);
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
     font-family:var(--mono); font-size:11px; color:var(--text-faint);
   }
+  @media (max-width:760px){ .footer-grid{grid-template-columns:1fr;} }
 
   .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
@@ -318,16 +419,17 @@
 </head>
 <body>
 
-<header>
+<header id="site-header">
   <nav class="wrap">
     <a class="brand" href="#top"><span class="dot"></span>Kelvin Mutua Murungi</a>
     <div class="navlinks">
-      <a href="#about" class="hide-mobile">About</a>
-      <a href="#research" class="hide-mobile">Research</a>
-      <a href="#projects" class="hide-mobile">Projects</a>
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
-      <span class="status hide-mobile"><span class="pulse"></span>Open to collaborate</span>
+      <span class="status"><span class="pulse"></span>Open to collaborate</span>
     </div>
+    <button class="navtoggle" id="navtoggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
   </nav>
 </header>
 
@@ -363,16 +465,24 @@
         <a class="btn btn-primary" href="mailto:murungimutua@gmail.com">Email me</a>
         <a class="btn btn-ghost" href="#research">View research →</a>
       </div>
-      <div class="hero-caption">RISK INDEX — illustrative · early-warning threshold crossing</div>
+      <div class="hero-facts">
+        <div class="fact"><div class="num">PhD</div><div class="lbl">Candidate — University of Nairobi</div></div>
+        <div class="fact"><div class="num">03</div><div class="lbl">Degrees, Statistics → Computer Science</div></div>
+        <div class="fact"><div class="num">Nairobi</div><div class="lbl">Kenya — based</div></div>
+        <div class="fact"><div class="num">Open</div><div class="lbl">To research collaboration</div></div>
+      </div>
     </div>
   </section>
 
   <section id="about">
     <div class="wrap">
       <div class="section-head">
-        <div>
-          <span class="eyebrow">About</span>
-          <h2>Statistics, AI, and real-world impact</h2>
+        <div class="section-head-left">
+          <span class="secnum">01</span>
+          <div>
+            <span class="eyebrow">About</span>
+            <h2>Statistics, AI, and real-world impact</h2>
+          </div>
         </div>
       </div>
       <div class="about-grid">
@@ -402,9 +512,12 @@
   <section id="stack">
     <div class="wrap">
       <div class="section-head">
-        <div>
-          <span class="eyebrow">Tech stack</span>
-          <h2>Tools of the trade</h2>
+        <div class="section-head-left">
+          <span class="secnum">02</span>
+          <div>
+            <span class="eyebrow">Tech stack</span>
+            <h2>Tools of the trade</h2>
+          </div>
         </div>
       </div>
       <div class="stack-grid reveal">
@@ -448,22 +561,25 @@
   <section id="research">
     <div class="wrap">
       <div class="section-head">
-        <div>
-          <span class="eyebrow">Research</span>
-          <h2>Prediction, surveillance &amp; decision-making</h2>
+        <div class="section-head-left">
+          <span class="secnum">03</span>
+          <div>
+            <span class="eyebrow">Research</span>
+            <h2>Prediction, surveillance &amp; decision-making</h2>
+          </div>
         </div>
       </div>
       <p class="reveal" style="color:var(--text-dim); max-width:64ch; margin:-20px 0 40px;">My research explores how AI, statistics, and multi-source data can be used to improve prediction, surveillance, and decision-making in resource-constrained settings.</p>
       <div class="research-grid reveal">
-        <div class="research-card"><span class="idx">01</span><h3>AI for Development Impact</h3></div>
-        <div class="research-card"><span class="idx">02</span><h3>Predictive Modelling &amp; Risk Assessment</h3></div>
-        <div class="research-card"><span class="idx">03</span><h3>AI for Agriculture &amp; Food Safety</h3></div>
-        <div class="research-card"><span class="idx">04</span><h3>AI Applications in Public Health</h3></div>
-        <div class="research-card"><span class="idx">05</span><h3>Geospatial &amp; Spatial Analytics</h3></div>
-        <div class="research-card"><span class="idx">06</span><h3>Climate &amp; Environmental Risk Modelling</h3></div>
-        <div class="research-card"><span class="idx">07</span><h3>Explainable &amp; Responsible AI</h3></div>
-        <div class="research-card"><span class="idx">08</span><h3>AI-Enabled Early-Warning Systems</h3></div>
-        <div class="research-card"><span class="idx">09</span><h3>Statistical Decision-Support Systems</h3></div>
+        <div class="research-card"><span class="idx">01</span><div><h3>AI for Development Impact</h3><p>Applying AI beyond the technical to real development outcomes.</p></div></div>
+        <div class="research-card"><span class="idx">02</span><div><h3>Predictive Modelling &amp; Risk Assessment</h3><p>Forecasting risk from multi-source statistical and ML models.</p></div></div>
+        <div class="research-card"><span class="idx">03</span><div><h3>AI for Agriculture &amp; Food Safety</h3><p>Risk prediction and surveillance across food systems.</p></div></div>
+        <div class="research-card"><span class="idx">04</span><div><h3>AI Applications in Public Health</h3><p>Data-driven tools for health surveillance and response.</p></div></div>
+        <div class="research-card"><span class="idx">05</span><div><h3>Geospatial &amp; Spatial Analytics</h3><p>Mapping risk and patterns across space and time.</p></div></div>
+        <div class="research-card"><span class="idx">06</span><div><h3>Climate &amp; Environmental Risk Modelling</h3><p>Linking climate signals to downstream risk.</p></div></div>
+        <div class="research-card"><span class="idx">07</span><div><h3>Explainable &amp; Responsible AI</h3><p>Models that are transparent, fair, and accountable.</p></div></div>
+        <div class="research-card"><span class="idx">08</span><div><h3>AI-Enabled Early-Warning Systems</h3><p>Turning signals into timely, actionable alerts.</p></div></div>
+        <div class="research-card"><span class="idx">09</span><div><h3>Statistical Decision-Support Systems</h3><p>Evidence-based tools for better institutional decisions.</p></div></div>
       </div>
     </div>
   </section>
@@ -471,13 +587,17 @@
   <section id="projects">
     <div class="wrap">
       <div class="section-head">
-        <div>
-          <span class="eyebrow">Featured projects</span>
-          <h2>What I'm building</h2>
+        <div class="section-head-left">
+          <span class="secnum">04</span>
+          <div>
+            <span class="eyebrow">Featured projects</span>
+            <h2>What I'm building</h2>
+          </div>
         </div>
       </div>
       <div class="projects reveal">
         <div class="project">
+          <span class="pnum">01</span>
           <div class="ptitle">
             <span class="plabel">Featured</span>
             <h3>Aflatoxin Early-Warning &amp; Risk Prediction</h3>
@@ -491,6 +611,7 @@
           </div>
         </div>
         <div class="project">
+          <span class="pnum">02</span>
           <div class="ptitle">
             <span class="plabel">Infrastructure</span>
             <h3>Digital Survey &amp; Data Collection Systems</h3>
@@ -503,6 +624,7 @@
           </div>
         </div>
         <div class="project">
+          <span class="pnum">03</span>
           <div class="ptitle">
             <span class="plabel">Decision support</span>
             <h3>Predictive Analytics &amp; Decision Support</h3>
@@ -522,8 +644,11 @@
     <div class="wrap">
       <div class="collab reveal">
         <div>
-          <span class="eyebrow">Open to collaboration</span>
-          <h2 style="margin-top:8px; font-size:clamp(24px,3vw,32px);">Working across disciplines and borders</h2>
+          <div class="section-head-left" style="margin-bottom:8px;">
+            <span class="secnum">05</span>
+            <span class="eyebrow" style="margin-bottom:0;">Open to collaboration</span>
+          </div>
+          <h2 style="margin-top:14px; font-size:clamp(24px,3vw,32px);">Working across disciplines and borders</h2>
           <p style="margin-top:16px;">I'm interested in collaborating with researchers, universities, research organisations, development partners, governments, and technology organisations — particularly on multidisciplinary and multi-country work that translates research into practical solutions and policy impact.</p>
         </div>
         <ul class="collab-list">
@@ -548,14 +673,45 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-cta">
-        <span class="eyebrow">Get in touch</span>
-        <h2 style="margin-top:8px;">Let's build something that matters.</h2>
-        <ul class="contact-list">
-          <li><span class="k">Email</span><a href="mailto:murungimutua@gmail.com">murungimutua@gmail.com</a></li>
-          <li><span class="k">LinkedIn</span><span style="font-family:var(--mono); font-size:14px; color:var(--text-dim);">Add your LinkedIn URL here</span></li>
-        </ul>
+        <div class="section-head-left" style="margin-bottom:8px;">
+          <span class="secnum">06</span>
+          <span class="eyebrow" style="margin-bottom:0;">Get in touch</span>
+        </div>
+        <h2 style="margin-top:14px;">Let's build something that matters.</h2>
+        <p>Send a message about research, collaboration, or a project — I read and reply to every one.</p>
+      </div>
+
+      <div>
+        <div data-fs-success class="form-message"></div>
+        <div data-fs-error class="form-message"></div>
+        <form id="contact-form" class="contact-form reveal" action="https://formspree.io/f/xqpzngbz" method="POST">
+          <div class="form-field">
+            <label for="cf-name">Name</label>
+            <input class="form-input" type="text" id="cf-name" name="name" data-fs-field placeholder="Your name" required>
+            <span data-fs-error="name" class="field-error"></span>
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Email</label>
+            <input class="form-input" type="email" id="cf-email" name="email" data-fs-field placeholder="you@example.com" required>
+            <span data-fs-error="email" class="field-error"></span>
+          </div>
+          <div class="form-field">
+            <label for="cf-message">Message</label>
+            <textarea class="form-input" id="cf-message" name="message" data-fs-field placeholder="What would you like to talk about?" required></textarea>
+            <span data-fs-error="message" class="field-error"></span>
+          </div>
+          <button class="btn btn-primary form-submit" type="submit" data-fs-submit-btn>Send message →</button>
+          <span class="form-note">I read and reply to every message.</span>
+        </form>
       </div>
     </div>
+
+    <div class="footnote-contacts">
+      <a href="mailto:murungimutua@gmail.com"><span class="k">Email</span>murungimutua@gmail.com</a>
+      <a href="tel:+254705175787"><span class="k">Phone</span>+254 705 175 787</a>
+      <a href="https://www.linkedin.com/in/kelvinmutuamurungi-research-dataofficer-statistician/" target="_blank" rel="noopener"><span class="k">LinkedIn</span>kelvinmutuamurungi ↗</a>
+    </div>
+
     <div class="fineprint">
       <span>Building AI and data-driven solutions for Africa's most important development challenges.</span>
       <span>© <span id="year"></span> Kelvin Mutua Murungi</span>
@@ -566,12 +722,28 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  const header = document.getElementById('site-header');
+  const navtoggle = document.getElementById('navtoggle');
+  navtoggle.addEventListener('click', () => {
+    const isOpen = header.classList.toggle('open');
+    navtoggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  document.querySelectorAll('.navlinks a').forEach(a => {
+    a.addEventListener('click', () => { header.classList.remove('open'); navtoggle.setAttribute('aria-expanded','false'); });
+  });
+
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   revealEls.forEach(el => io.observe(el));
 </script>
+
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contact-form', formId: 'xqpzngbz' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 </html>
