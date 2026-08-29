@@ -3,750 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kelvin Mutua Murungi — Data Scientist &amp; AI Researcher</title>
-<meta name="description" content="Kelvin Mutua Murungi — Data Scientist, Statistician and AI Researcher building risk-prediction and early-warning systems for agriculture, food safety, public health and climate resilience in Africa.">
+<title>Kelvin Mutua Murungi</title>
+<meta name="description" content="Kelvin Mutua Murungi — Data Scientist, Statistician, and AI Researcher. PhD candidate, University of Nairobi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg: #ede4d2;
-    --bg-panel: #e4d9bf;
-    --bg-panel-2: #ddd0af;
-    --line: #c6b78f;
-    --text: #2c2415;
-    --text-dim: #5f5439;
-    --text-faint: #8c7f5f;
-    --signal: #5c6b3c;
-    --signal-dim: #8a9765;
-    --alert: #a8562c;
-    --alert-dim: #c98f6a;
-    --serif: "Source Serif 4", Georgia, serif;
-    --display: "Space Grotesk", "Helvetica Neue", sans-serif;
-    --mono: "JetBrains Mono", ui-monospace, monospace;
-    --maxw: 1120px;
-    --shadow: 0 1px 2px rgba(44,36,21,0.05), 0 14px 28px -16px rgba(44,36,21,0.22);
-  }
-
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
-  }
-
-  body{
-    margin:0;
-    background:
-      radial-gradient(circle at 1px 1px, rgba(44,36,21,0.07) 1px, transparent 0) 0 0/26px 26px,
-      var(--bg);
-    color:var(--text);
-    font-family:var(--serif);
-    font-size:17px;
-    line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
-
-  a{color:inherit;}
-  ::selection{background:var(--signal-dim); color:#fff;}
-
-  :focus-visible{
-    outline:2px solid var(--signal);
-    outline-offset:3px;
-    border-radius:2px;
-  }
-
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
-
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:12px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--signal);
-  }
-
-  h1,h2,h3{font-family:var(--display); font-weight:600; margin:0; color:var(--text);}
-
-  /* ---------- Nav ---------- */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(237,228,210,0.86);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-    box-shadow:0 8px 24px -20px rgba(44,36,21,0.4);
-  }
-  nav.wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    height:64px;
-  }
-  .brand{
-    font-family:var(--display); font-weight:600; font-size:15px;
-    letter-spacing:0.01em;
-    text-decoration:none;
-    display:flex; align-items:center; gap:9px;
-  }
-  .brand .dot{
-    width:8px; height:8px; border-radius:50%;
-    background:var(--signal);
-    box-shadow:0 0 0 3px rgba(92,107,60,0.18);
-  }
-  .navlinks{display:flex; gap:28px; align-items:center;}
-  .navlinks a{
-    font-family:var(--mono); font-size:12.5px; letter-spacing:0.03em;
-    text-decoration:none; color:var(--text-dim);
-    text-transform:uppercase;
-    transition:color .15s ease;
-  }
-  .navlinks a:hover{color:var(--signal);}
-  .navlinks .status{
-    display:flex; align-items:center; gap:7px;
-    padding:6px 12px;
-    border:1px solid var(--line);
-    border-radius:100px;
-    font-family:var(--mono); font-size:11.5px; color:var(--text-dim);
-  }
-  .navlinks .status .pulse{
-    width:6px; height:6px; border-radius:50%;
-    background:var(--signal);
-    animation:pulse 2.2s ease-in-out infinite;
-  }
-  @keyframes pulse{
-    0%,100%{opacity:1; box-shadow:0 0 0 0 rgba(92,107,60,0.5);}
-    50%{opacity:0.55; box-shadow:0 0 0 5px rgba(92,107,60,0);}
-  }
-
-  .navtoggle{
-    display:none; background:none; border:1px solid var(--line);
-    border-radius:4px; width:36px; height:36px;
-    align-items:center; justify-content:center;
-    cursor:pointer; padding:0;
-  }
-  .navtoggle span, .navtoggle span::before, .navtoggle span::after{
-    display:block; width:16px; height:1.5px; background:var(--text);
-    position:relative; transition:transform .2s ease, opacity .2s ease;
-  }
-  .navtoggle span::before, .navtoggle span::after{content:""; position:absolute; left:0;}
-  .navtoggle span::before{top:-5px;}
-  .navtoggle span::after{top:5px;}
-  header.open .navtoggle span{background:transparent;}
-  header.open .navtoggle span::before{transform:translateY(5px) rotate(45deg);}
-  header.open .navtoggle span::after{transform:translateY(-5px) rotate(-45deg);}
-
-  @media (max-width:760px){
-    .navtoggle{display:flex;}
-    .navlinks{
-      position:fixed; top:64px; left:0; right:0; z-index:49;
-      flex-direction:column; align-items:flex-start; gap:0;
-      background:var(--bg); border-bottom:1px solid var(--line);
-      max-height:0; overflow:hidden;
-      transition:max-height .25s ease;
-    }
-    header.open .navlinks{max-height:280px;}
-    .navlinks a, .navlinks .status{
-      display:flex !important; width:100%; padding:16px 28px;
-      border-top:1px solid var(--line);
-    }
-    .navlinks a:first-child{border-top:none;}
-  }
-
-  /* ---------- Hero ---------- */
-  .hero{
-    position:relative;
-    padding:96px 0 64px;
-    overflow:hidden;
-    border-bottom:1px solid var(--line);
-  }
-  .hero .wrap{position:relative; z-index:2;}
-  .hero-graphic{
-    position:absolute; inset:0; z-index:1;
-    opacity:0.9;
-  }
-  .hero-graphic svg{width:100%; height:100%; display:block;}
-  .hero-fade{
-    position:absolute; inset:0; z-index:1;
-    background:linear-gradient(180deg, rgba(237,228,210,0.1) 0%, rgba(237,228,210,0.65) 55%, var(--bg) 100%);
-  }
-  .kicker{
-    display:flex; align-items:center; gap:10px; margin-bottom:22px;
-  }
-  .kicker .rule{width:34px; height:1px; background:var(--signal-dim);}
-
-  h1.name{
-    font-size:clamp(40px, 6.2vw, 78px);
-    line-height:1.03;
-    letter-spacing:-0.01em;
-    max-width:14ch;
-  }
-  .role{
-    font-family:var(--serif); font-style:italic; font-weight:400;
-    color:var(--text-dim);
-    font-size:clamp(17px, 2vw, 21px);
-    margin-top:18px; max-width:46ch;
-  }
-  .hero-cta{
-    display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;
-  }
-  .btn{
-    font-family:var(--mono); font-size:13px; letter-spacing:0.02em;
-    padding:12px 20px; border-radius:3px;
-    text-decoration:none; display:inline-flex; align-items:center; gap:8px;
-    transition:all .15s ease;
-    border:1px solid transparent;
-  }
-  .btn-primary{background:var(--signal); color:#f3ecd9;}
-  .btn-primary:hover{background:#4c5931;}
-  .btn-ghost{border-color:var(--line); color:var(--text);}
-  .btn-ghost:hover{border-color:var(--text-dim); background:var(--bg-panel);}
-
-  .hero-caption{
-    font-family:var(--mono); font-size:11px; color:var(--text-faint);
-    letter-spacing:0.05em;
-    margin-top:52px;
-  }
-
-  .hero-facts{
-    display:flex; gap:0; margin-top:44px; flex-wrap:wrap;
-    border-top:1px solid var(--line);
-  }
-  .hero-facts .fact{
-    padding:18px 28px 0 0; margin-right:28px;
-    border-right:1px solid var(--line);
-  }
-  .hero-facts .fact:last-child{border-right:none; margin-right:0;}
-  .hero-facts .fact .num{font-family:var(--display); font-size:22px; font-weight:600; color:var(--text);}
-  .hero-facts .fact .lbl{font-family:var(--mono); font-size:11.5px; color:var(--text-dim); margin-top:4px; max-width:16ch;}
-
-  /* ---------- Section shell ---------- */
-  section{padding:88px 0;}
-  section + section{border-top:1px solid var(--line);}
-  .section-head{
-    display:flex; align-items:flex-end; justify-content:space-between;
-    margin-bottom:44px; gap:20px; flex-wrap:wrap;
-  }
-  .section-head-left{display:flex; align-items:flex-end; gap:18px;}
-  .secnum{
-    font-family:var(--mono); font-size:13px; color:var(--text-faint);
-    border:1px solid var(--line); border-radius:100px;
-    padding:5px 12px; margin-bottom:4px;
-  }
-  .section-head h2{font-size:clamp(26px, 3vw, 34px);}
-  .section-head .eyebrow{margin-bottom:8px; display:block;}
-
-  /* ---------- About ---------- */
-  .about-grid{
-    display:grid; grid-template-columns: 1.3fr 0.9fr; gap:64px;
-  }
-  .about-grid p{color:var(--text-dim); font-size:17px;}
-  .about-grid p + p{margin-top:16px;}
-  .about-grid strong{color:var(--text); font-weight:600;}
-
-  .timeline{list-style:none; margin:0; padding:0;}
-  .timeline li{
-    position:relative; padding-left:26px; padding-bottom:28px;
-    border-left:1px solid var(--line);
-  }
-  .timeline li:last-child{padding-bottom:0;}
-  .timeline li::before{
-    content:""; position:absolute; left:-4.5px; top:2px;
-    width:8px; height:8px; border-radius:50%;
-    background:var(--bg); border:1.5px solid var(--signal);
-  }
-  .timeline li.current::before{background:var(--signal);}
-  .timeline .deg{font-family:var(--display); font-size:15.5px; font-weight:600; color:var(--text);}
-  .timeline .school{font-family:var(--mono); font-size:12px; color:var(--text-dim); margin-top:4px;}
-  .timeline .tag{
-    display:inline-block; margin-top:8px;
-    font-family:var(--mono); font-size:10.5px; letter-spacing:0.06em;
-    text-transform:uppercase; color:var(--signal);
-    border:1px solid var(--signal-dim); border-radius:100px;
-    padding:2px 9px;
-  }
-
-  /* ---------- Stack ---------- */
-  .stack-grid{
-    display:grid; grid-template-columns:repeat(2, 1fr); gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-    box-shadow:var(--shadow);
-  }
-  .stack-cat{background:var(--bg-panel); padding:28px; position:relative; transition:transform .18s ease, box-shadow .18s ease;}
-  .stack-cat:hover{transform:translateY(-2px); box-shadow:var(--shadow); z-index:2;}
-  .stack-cat h3{
-    font-family:var(--mono); font-size:12px; letter-spacing:0.08em;
-    text-transform:uppercase; color:var(--text-dim); font-weight:500;
-    margin-bottom:16px;
-  }
-  .chips{display:flex; flex-wrap:wrap; gap:8px;}
-  .chip{
-    font-family:var(--mono); font-size:12.5px; color:var(--text);
-    background:var(--bg-panel-2); border:1px solid var(--line);
-    padding:6px 11px; border-radius:3px;
-  }
-
-  @media (max-width:760px){
-    .stack-grid{grid-template-columns:1fr;}
-    .about-grid{grid-template-columns:1fr;}
-  }
-
-  /* ---------- Research grid ---------- */
-  .research-grid{
-    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
-    background:var(--line); border:1px solid var(--line);
-    box-shadow:var(--shadow);
-  }
-  .research-card{
-    background:var(--bg-panel); padding:26px 24px;
-    min-height:148px;
-    display:flex; flex-direction:column; justify-content:space-between;
-    transition:transform .18s ease, box-shadow .18s ease, background .15s ease;
-    position:relative;
-  }
-  .research-card:hover{background:var(--bg-panel-2); transform:translateY(-2px); box-shadow:var(--shadow); z-index:2;}
-  .research-card .idx{
-    font-family:var(--mono); font-size:11px; color:var(--bg);
-    background:var(--signal); width:22px; height:22px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .research-card h3{font-size:16px; margin-top:14px; line-height:1.3;}
-  .research-card p{font-family:var(--mono); font-size:12px; color:var(--text-dim); margin:8px 0 0; line-height:1.5;}
-
-  @media (max-width:900px){ .research-grid{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:600px){ .research-grid{grid-template-columns:1fr;} }
-
-  /* ---------- Projects ---------- */
-  .projects{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); box-shadow:var(--shadow);}
-  .project{
-    background:var(--bg-panel);
-    padding:36px;
-    display:grid; grid-template-columns:56px 200px 1fr; gap:24px;
-    transition:background .15s ease;
-    position:relative;
-  }
-  .project:hover{background:var(--bg-panel-2);}
-  .project .pnum{
-    font-family:var(--serif); font-style:italic; font-weight:400;
-    font-size:38px; color:var(--line); line-height:1;
-  }
-  .project .ptitle{display:flex; flex-direction:column; gap:6px;}
-  .project .plabel{font-family:var(--mono); font-size:11px; color:var(--signal); letter-spacing:0.06em; text-transform:uppercase;}
-  .project h3{font-size:20px; line-height:1.25;}
-  .project p{color:var(--text-dim); margin:0 0 16px;}
-  .project .tags{display:flex; flex-wrap:wrap; gap:7px;}
-  .project .tags span{
-    font-family:var(--mono); font-size:11px; color:var(--text-dim);
-    border:1px solid var(--line); padding:4px 9px; border-radius:100px;
-    background:var(--bg);
-  }
-  @media (max-width:760px){
-    .project{grid-template-columns:1fr; gap:12px;}
-    .project .pnum{display:none;}
-  }
-
-  /* ---------- Collaboration ---------- */
-  .collab{
-    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
-  }
-  .collab p{color:var(--text-dim);}
-  .collab-list{list-style:none; margin:18px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:10px 18px;}
-  .collab-list li{
-    font-family:var(--mono); font-size:12.5px; color:var(--text);
-    padding-left:16px; position:relative;
-  }
-  .collab-list li::before{
-    content:"→"; position:absolute; left:0; color:var(--alert);
-  }
-  @media (max-width:760px){ .collab{grid-template-columns:1fr;} .collab-list{grid-template-columns:1fr;} }
-
-  /* ---------- Footer ---------- */
-  footer{padding:64px 0 48px;}
-  .footer-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
-  }
-  .footer-cta h2{font-size:clamp(26px,3.6vw,40px); max-width:14ch;}
-  .footer-cta p{color:var(--text-dim); margin-top:14px; max-width:38ch;}
-
-  .contact-form{display:flex; flex-direction:column; gap:16px;}
-  .form-field{display:flex; flex-direction:column; gap:6px;}
-  .form-field label{
-    font-family:var(--mono); font-size:11px; text-transform:uppercase;
-    letter-spacing:0.06em; color:var(--text-dim);
-  }
-  .form-input{
-    font-family:var(--serif); font-size:15px; color:var(--text);
-    background:var(--bg-panel); border:1px solid var(--line); border-radius:4px;
-    padding:12px 14px; resize:vertical;
-    transition:border-color .15s ease, box-shadow .15s ease;
-  }
-  .form-input:focus{outline:none; border-color:var(--signal); box-shadow:0 0 0 3px rgba(92,107,60,0.15);}
-  .form-input[aria-invalid="true"]{border-color:var(--alert);}
-  textarea.form-input{min-height:110px; font-family:var(--serif);}
-  .form-submit{align-self:flex-start; margin-top:2px; cursor:pointer;}
-  .form-note{font-family:var(--mono); font-size:11px; color:var(--text-faint); margin-top:-4px;}
-
-  .field-error{font-family:var(--mono); font-size:11px; color:var(--alert);}
-  .field-error:empty{display:none;}
-
-  .form-message{font-family:var(--mono); font-size:12.5px; line-height:1.5; border-radius:4px;}
-  .form-message:empty{display:none; margin:0; padding:0; border:none;}
-  .form-message:not(:empty){display:block; padding:12px 14px; margin-bottom:16px;}
-  .form-message[data-fs-success]:not(:empty){color:var(--signal); background:var(--bg-panel); border:1px solid var(--signal-dim);}
-  .form-message[data-fs-error]:not(:empty){color:var(--alert); background:var(--bg-panel); border:1px solid var(--alert-dim);}
-
-  .footnote-contacts{
-    display:flex; gap:28px; flex-wrap:wrap;
-    margin-top:56px; padding-top:24px; border-top:1px solid var(--line);
-  }
-  .footnote-contacts a{
-    font-family:var(--mono); font-size:13px; color:var(--text-dim);
-    text-decoration:none; display:inline-flex; align-items:baseline; gap:7px;
-    transition:color .15s ease;
-  }
-  .footnote-contacts a:hover{color:var(--signal);}
-  .footnote-contacts .k{
-    color:var(--text-faint); font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em;
-  }
-  .fineprint{
-    margin-top:24px; padding-top:24px; border-top:1px solid var(--line);
-    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
-    font-family:var(--mono); font-size:11px; color:var(--text-faint);
-  }
-  @media (max-width:760px){ .footer-grid{grid-template-columns:1fr;} }
-
-  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
-  .reveal.in{opacity:1; transform:translateY(0);}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header id="site-header">
-  <nav class="wrap">
-    <a class="brand" href="#top"><span class="dot"></span>Kelvin Mutua Murungi</a>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="index.html">Kelvin Mutua Murungi</a>
     <div class="navlinks">
-      <a href="#about">About</a>
-      <a href="#research">Research</a>
-      <a href="#projects">Projects</a>
-      <a href="https://github.com/muts-prog" target="_blank" rel="noopener">GitHub ↗</a>
-      <a href="#contact">Contact</a>
-      <span class="status"><span class="pulse"></span>Open to collaborate</span>
+      <a href="index.html" class="active">About</a>
+      <a href="publications.html">Publications</a>
+      <a href="teaching.html">Teaching</a>
     </div>
-    <button class="navtoggle" id="navtoggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
-  </nav>
-</header>
+  </div>
+</nav>
 
-<main id="top">
+<main class="wrap">
+  <h1>Kelvin Mutua Murungi</h1>
+  <p class="subtitle">Data Scientist, Statistician &amp; AI Researcher. <a href="https://en.uonbi.ac.ke/" target="_blank" rel="noopener">Department of Computer Science, University of Nairobi</a></p>
 
-  <section class="hero">
-    <div class="hero-graphic" aria-hidden="true">
-      <svg viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice">
-        <line x1="0" y1="200" x2="1200" y2="200" stroke="#a8562c" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 6"/>
-        <text x="1130" y="192" fill="#a8562c" fill-opacity="0.65" font-family="JetBrains Mono" font-size="11">threshold</text>
-        <polyline id="riskline" points="0,340 60,320 120,335 180,300 240,310 300,260 360,275 420,230 480,245 540,190 600,205 660,160 720,175 780,140 840,150 900,120 960,132 1020,105 1080,118 1140,95 1200,100"
-          fill="none" stroke="#5c6b3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="1140" cy="95" r="4.5" fill="#5c6b3c">
-          <animate attributeName="r" values="4.5;8;4.5" dur="2.4s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="1;0.35;1" dur="2.4s" repeatCount="indefinite"/>
-        </circle>
-        <g stroke="#c6b78f" stroke-width="1">
-          <line x1="0" y1="80" x2="1200" y2="80"/>
-          <line x1="0" y1="440" x2="1200" y2="440"/>
-        </g>
-      </svg>
-    </div>
-    <div class="hero-fade" aria-hidden="true"></div>
-
-    <div class="wrap">
-      <div class="kicker">
-        <span class="rule"></span>
-        <span class="eyebrow">PhD Researcher — AI, Statistics &amp; Data Science</span>
+  <div class="profile-grid">
+    <!-- Replace src below with your own photo, e.g. assets/img/kelvin.jpg -->
+    <img class="avatar" src="https://via.placeholder.com/150x150.png?text=Photo" alt="Kelvin Mutua Murungi">
+    <div class="profile-text">
+      <div class="bio">
+        <p>I am a PhD candidate in Computer Science at the University of Nairobi, supported by the Danida Scholarship (Reclaim_KE). I hold a Master of Science in Applied Statistics from Jomo Kenyatta University of Agriculture and Technology, and a BSc in Applied Statistics with Computing from the University of Kabianga.</p>
+        <p>My work sits at the intersection of artificial intelligence, statistics, and monitoring &amp; evaluation. I focus on AI-driven risk prediction, early-warning systems, and decision-support tools for agriculture, food safety, public health, and climate resilience across Africa.</p>
       </div>
-      <h1 class="name">Kelvin Mutua Murungi</h1>
-      <p class="role">Building AI-driven risk-prediction, early-warning, and decision-support systems for agriculture, food safety, public health, and climate resilience across Africa.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="mailto:murungimutua@gmail.com">Email me</a>
-        <a class="btn btn-ghost" href="https://github.com/muts-prog" target="_blank" rel="noopener">See my GitHub ↗</a>
-        <a class="btn btn-ghost" href="#research">View research →</a>
-      </div>
-      <div class="hero-facts">
-        <div class="fact"><div class="num">PhD</div><div class="lbl">Candidate — University of Nairobi</div></div>
-        <div class="fact"><div class="num">03</div><div class="lbl">Degrees, Statistics → Computer Science</div></div>
-        <div class="fact"><div class="num">Nairobi</div><div class="lbl">Kenya — based</div></div>
-        <div class="fact"><div class="num">Open</div><div class="lbl">To research collaboration</div></div>
+
+      <ul class="positions">
+        <li>PhD Candidate, Computer Science, University of Nairobi, 2025 – Present</li>
+        <li>Data Scientist (M&amp;E-focused), Masutane Research Solutions, 2025 – 2026</li>
+        <li>MSc in Applied Statistics, Jomo Kenyatta University of Agriculture and Technology, 2025</li>
+        <li>BSc in Applied Statistics with Computing, University of Kabianga, 2020</li>
+      </ul>
+
+      <div class="icons">
+        <a href="mailto:murungimutua@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="tel:+254705175787" title="Phone"><i class="fa-solid fa-phone"></i></a>
+        <a href="https://www.linkedin.com/in/kelvinmutuamurungi-research-dataofficer-statistician/" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/muts-prog" target="_blank" rel="noopener" title="GitHub"><i class="fa-brands fa-github"></i></a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section id="about">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-head-left">
-          <span class="secnum">01</span>
-          <div>
-            <span class="eyebrow">About</span>
-            <h2>Statistics, AI, and real-world impact</h2>
-          </div>
-        </div>
-      </div>
-      <div class="about-grid">
-        <div class="reveal">
-          <p><strong>I'm a Data Scientist, Statistician, and AI Researcher</strong> pursuing a PhD in Computer Science at the University of Nairobi, with a background in applied statistics and data analytics. My work sits at the intersection of artificial intelligence, machine learning, statistics, and sustainable development.</p>
-          <p>I'm particularly interested in developing practical, data-driven solutions to challenges in agriculture, food safety, public health, climate resilience, and development. My current research focuses on AI-driven risk prediction, early-warning systems, and decision-support tools, applying machine learning and statistical methods to real-world African development challenges.</p>
-        </div>
-        <ul class="timeline reveal">
-          <li>
-            <div class="deg">BSc Applied Statistics with Computing</div>
-            <div class="school">University of Kabianga</div>
-          </li>
-          <li>
-            <div class="deg">Master of Applied Statistics</div>
-            <div class="school">Jomo Kenyatta University of Agriculture and Technology</div>
-          </li>
-          <li class="current">
-            <div class="deg">PhD in Computer Science</div>
-            <div class="school">University of Nairobi</div>
-            <span class="tag">In progress</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="stack">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-head-left">
-          <span class="secnum">02</span>
-          <div>
-            <span class="eyebrow">Tech stack</span>
-            <h2>Tools of the trade</h2>
-          </div>
-        </div>
-      </div>
-      <div class="stack-grid reveal">
-        <div class="stack-cat">
-          <h3>Programming &amp; Data Science</h3>
-          <div class="chips">
-            <span class="chip">Python</span><span class="chip">R</span><span class="chip">SQL</span>
-            <span class="chip">Power BI</span><span class="chip">Jupyter</span>
-          </div>
-        </div>
-        <div class="stack-cat">
-          <h3>AI &amp; Machine Learning</h3>
-          <div class="chips">
-            <span class="chip">Machine Learning</span><span class="chip">Predictive Modelling</span>
-            <span class="chip">Statistical Learning</span><span class="chip">Explainable AI (XAI)</span>
-            <span class="chip">NLP</span><span class="chip">Deep Learning</span>
-            <span class="chip">Risk Modelling</span><span class="chip">Time-Series Modelling</span>
-          </div>
-        </div>
-        <div class="stack-cat">
-          <h3>Data &amp; Geospatial Analytics</h3>
-          <div class="chips">
-            <span class="chip">Geospatial Analytics</span><span class="chip">Spatial Modelling</span>
-            <span class="chip">Remote Sensing</span><span class="chip">Climate &amp; Environmental Data</span>
-            <span class="chip">Data Engineering &amp; ETL</span><span class="chip">Data Visualisation</span>
-            <span class="chip">Digital Data Collection</span>
-          </div>
-        </div>
-        <div class="stack-cat">
-          <h3>Research &amp; Development</h3>
-          <div class="chips">
-            <span class="chip">Research Design</span><span class="chip">Statistical Analysis</span>
-            <span class="chip">Survey Methodology</span><span class="chip">Monitoring, Evaluation &amp; Learning</span>
-            <span class="chip">Decision-Support Systems</span><span class="chip">Responsible &amp; Ethical AI</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <section id="experience">
+    <h2>Experience</h2>
+    <ul class="list">
+      <li>
+        <div class="entry-title">Data Scientist (M&amp;E-focused)</div>
+        <div class="entry-meta">Masutane Research Solutions, Johannesburg (remote) · Aug 2025 – Jul 2026</div>
+      </li>
+      <li>
+        <div class="entry-title">Research Data Scientist &amp; Panel Operations Specialist</div>
+        <div class="entry-meta">Masutane Research Solutions, Johannesburg (remote) · Aug 2024 – Aug 2025</div>
+      </li>
+      <li>
+        <div class="entry-title">Lead Consultant — Data Science &amp; Evaluation</div>
+        <div class="entry-meta">Indepth Research Institute (IRES), Nairobi (hybrid) · Jan 2023 – Jun 2024</div>
+      </li>
+      <li>
+        <div class="entry-title">Data Scientist</div>
+        <div class="entry-meta">Precision Consulting LLC (remote, New York HQ) · Jan 2024 – Mar 2024</div>
+      </li>
+      <li>
+        <div class="entry-title">Research Associate</div>
+        <div class="entry-meta">Catherine Naliaka PhD Research, Nairobi (hybrid) · Nov 2023 – Dec 2023</div>
+      </li>
+      <li>
+        <div class="entry-title">Consultant — Data Analyst</div>
+        <div class="entry-meta">Indepth Research Institute (IRES), Nairobi (hybrid) · Dec 2022 – Nov 2023</div>
+      </li>
+    </ul>
   </section>
 
   <section id="research">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-head-left">
-          <span class="secnum">03</span>
-          <div>
-            <span class="eyebrow">Research</span>
-            <h2>Prediction, surveillance &amp; decision-making</h2>
-          </div>
-        </div>
-      </div>
-      <p class="reveal" style="color:var(--text-dim); max-width:64ch; margin:-20px 0 40px;">My research explores how AI, statistics, and multi-source data can be used to improve prediction, surveillance, and decision-making in resource-constrained settings.</p>
-      <div class="research-grid reveal">
-        <div class="research-card"><span class="idx">01</span><div><h3>AI for Development Impact</h3><p>Applying AI beyond the technical to real development outcomes.</p></div></div>
-        <div class="research-card"><span class="idx">02</span><div><h3>Predictive Modelling &amp; Risk Assessment</h3><p>Forecasting risk from multi-source statistical and ML models.</p></div></div>
-        <div class="research-card"><span class="idx">03</span><div><h3>AI for Agriculture &amp; Food Safety</h3><p>Risk prediction and surveillance across food systems.</p></div></div>
-        <div class="research-card"><span class="idx">04</span><div><h3>AI Applications in Public Health</h3><p>Data-driven tools for health surveillance and response.</p></div></div>
-        <div class="research-card"><span class="idx">05</span><div><h3>Geospatial &amp; Spatial Analytics</h3><p>Mapping risk and patterns across space and time.</p></div></div>
-        <div class="research-card"><span class="idx">06</span><div><h3>Climate &amp; Environmental Risk Modelling</h3><p>Linking climate signals to downstream risk.</p></div></div>
-        <div class="research-card"><span class="idx">07</span><div><h3>Explainable &amp; Responsible AI</h3><p>Models that are transparent, fair, and accountable.</p></div></div>
-        <div class="research-card"><span class="idx">08</span><div><h3>AI-Enabled Early-Warning Systems</h3><p>Turning signals into timely, actionable alerts.</p></div></div>
-        <div class="research-card"><span class="idx">09</span><div><h3>Statistical Decision-Support Systems</h3><p>Evidence-based tools for better institutional decisions.</p></div></div>
-      </div>
-    </div>
+    <h2>Research Interests</h2>
+    <p>AI for development, predictive modelling and risk assessment, agricultural and food-safety surveillance, public health analytics, geospatial and climate risk modelling, early-warning systems, and explainable and responsible AI.</p>
   </section>
 
-  <section id="projects">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-head-left">
-          <span class="secnum">04</span>
-          <div>
-            <span class="eyebrow">Featured projects</span>
-            <h2>What I'm building</h2>
-          </div>
-        </div>
-      </div>
-      <div class="projects reveal">
-        <div class="project">
-          <span class="pnum">01</span>
-          <div class="ptitle">
-            <span class="plabel">Featured</span>
-            <h3>Aflatoxin Early-Warning &amp; Risk Prediction</h3>
-          </div>
-          <div>
-            <p>Developing AI and statistical models for aflatoxin risk prediction and risk-based surveillance in Kenya, integrating agricultural, environmental, climatic, health, and surveillance data.</p>
-            <div class="tags">
-              <span>Machine Learning</span><span>Geospatial Analytics</span><span>Climate Data</span>
-              <span>Risk Modelling</span><span>Explainable AI</span><span>Early Warning</span>
-            </div>
-          </div>
-        </div>
-        <div class="project">
-          <span class="pnum">02</span>
-          <div class="ptitle">
-            <span class="plabel">Infrastructure</span>
-            <h3>Digital Survey &amp; Data Collection Systems</h3>
-          </div>
-          <div>
-            <p>Developing digital solutions for survey automation, data collection, quality control, and research data management.</p>
-            <div class="tags">
-              <span>Survey Technology</span><span>Data Management</span><span>Automation</span><span>Research Analytics</span>
-            </div>
-          </div>
-        </div>
-        <div class="project">
-          <span class="pnum">03</span>
-          <div class="ptitle">
-            <span class="plabel">Decision support</span>
-            <h3>Predictive Analytics &amp; Decision Support</h3>
-          </div>
-          <div>
-            <p>Statistical and machine-learning models to support risk assessment, forecasting, business intelligence, and evidence-based decision-making.</p>
-            <div class="tags">
-              <span>Forecasting</span><span>Risk Assessment</span><span>Business Intelligence</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="collab">
-    <div class="wrap">
-      <div class="collab reveal">
-        <div>
-          <div class="section-head-left" style="margin-bottom:8px;">
-            <span class="secnum">05</span>
-            <span class="eyebrow" style="margin-bottom:0;">Open to collaboration</span>
-          </div>
-          <h2 style="margin-top:14px; font-size:clamp(24px,3vw,32px);">Working across disciplines and borders</h2>
-          <p style="margin-top:16px;">I'm interested in collaborating with researchers, universities, research organisations, development partners, governments, and technology organisations — particularly on multidisciplinary and multi-country work that translates research into practical solutions and policy impact.</p>
-        </div>
-        <ul class="collab-list">
-          <li>AI for development &amp; social good</li>
-          <li>Agriculture &amp; food systems</li>
-          <li>Public health &amp; epidemiology</li>
-          <li>Climate resilience</li>
-          <li>Predictive modelling &amp; risk assessment</li>
-          <li>Geospatial &amp; environmental analytics</li>
-          <li>AI-enabled early-warning systems</li>
-          <li>Responsible &amp; explainable AI</li>
-          <li>Open-source AI &amp; data science</li>
-          <li>Multidisciplinary research across Africa</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
+  <footer>
+    <p>© <span id="year"></span> Kelvin Mutua Murungi · Nairobi, Kenya</p>
+  </footer>
 </main>
 
-<footer id="contact">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-cta">
-        <div class="section-head-left" style="margin-bottom:8px;">
-          <span class="secnum">06</span>
-          <span class="eyebrow" style="margin-bottom:0;">Get in touch</span>
-        </div>
-        <h2 style="margin-top:14px;">Let's build something that matters.</h2>
-        <p>Send a message about research, collaboration, or a project — I read and reply to every one.</p>
-      </div>
-
-      <div>
-        <div data-fs-success class="form-message"></div>
-        <div data-fs-error class="form-message"></div>
-        <form id="contact-form" class="contact-form reveal" action="https://formspree.io/f/xqpzngbz" method="POST">
-          <div class="form-field">
-            <label for="cf-name">Name</label>
-            <input class="form-input" type="text" id="cf-name" name="name" data-fs-field placeholder="Your name" required>
-            <span data-fs-error="name" class="field-error"></span>
-          </div>
-          <div class="form-field">
-            <label for="cf-email">Email</label>
-            <input class="form-input" type="email" id="cf-email" name="email" data-fs-field placeholder="you@example.com" required>
-            <span data-fs-error="email" class="field-error"></span>
-          </div>
-          <div class="form-field">
-            <label for="cf-message">Message</label>
-            <textarea class="form-input" id="cf-message" name="message" data-fs-field placeholder="What would you like to talk about?" required></textarea>
-            <span data-fs-error="message" class="field-error"></span>
-          </div>
-          <button class="btn btn-primary form-submit" type="submit" data-fs-submit-btn>Send message →</button>
-          <span class="form-note">I read and reply to every message.</span>
-        </form>
-      </div>
-    </div>
-
-    <div class="footnote-contacts">
-      <a href="mailto:murungimutua@gmail.com"><span class="k">Email</span>murungimutua@gmail.com</a>
-      <a href="tel:+254705175787"><span class="k">Phone</span>+254 705 175 787</a>
-      <a href="https://www.linkedin.com/in/kelvinmutuamurungi-research-dataofficer-statistician/" target="_blank" rel="noopener"><span class="k">LinkedIn</span>kelvinmutuamurungi ↗</a>
-      <a href="https://github.com/muts-prog" target="_blank" rel="noopener"><span class="k">GitHub</span>muts-prog ↗</a>
-    </div>
-
-    <div class="fineprint">
-      <span>Building AI and data-driven solutions for Africa's most important development challenges.</span>
-      <span>© <span id="year"></span> Kelvin Mutua Murungi</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const header = document.getElementById('site-header');
-  const navtoggle = document.getElementById('navtoggle');
-  navtoggle.addEventListener('click', () => {
-    const isOpen = header.classList.toggle('open');
-    navtoggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-  document.querySelectorAll('.navlinks a').forEach(a => {
-    a.addEventListener('click', () => { header.classList.remove('open'); navtoggle.setAttribute('aria-expanded','false'); });
-  });
-
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => io.observe(el));
-</script>
-
-<script>
-  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-  formspree('initForm', { formElement: '#contact-form', formId: 'xqpzngbz' });
-</script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
-
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
