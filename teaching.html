@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teaching — Kelvin Mutua Murungi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="index.html">Kelvin Mutua Murungi</a>
+    <div class="navlinks">
+      <a href="index.html">About</a>
+      <a href="publications.html">Publications</a>
+      <a href="teaching.html" class="active">Teaching</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <h1>Teaching</h1>
+  <p class="subtitle">Courses taught</p>
+
+  <section>
+    <ul class="list">
+      <li>
+        <div class="entry-title">SMA6153 — Mathematics for AI 2</div>
+        <div class="entry-meta">University of Nairobi</div>
+      </li>
+      <li>
+        <div class="entry-title">CSC 209 — Database Systems</div>
+        <div class="entry-meta">Open University of Kenya (OUK)</div>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> Kelvin Mutua Murungi · Nairobi, Kenya</p>
+  </footer>
+</main>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
